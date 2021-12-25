@@ -4,46 +4,26 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { Image, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Asset, useAssets } from 'expo-asset';
+import { Asset } from 'expo-asset';
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
-
-const loadImages = (images) =>
-  images.map((image) => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image);
-    } else {
-      return Asset.loadAsync(image);
-    }
-  });
-
 export default function App() {
   const [ready, setReady] = useState(false);
-  // const [assets] = useAssets([
-  //   require('./dami.png'),
-  //   'https://reactnative.dev/img/oss_logo.png',
-  // ]);
-  // const [loaded] = Font.useFonts(Ionicons.font);
 
   const onFinish = () => setReady(true);
+  const loadAssets = (assets) => assets.map((asset) => Asset.loadAsync(asset));
 
   const startLoading = async () => {
-    // init db
-    // get user avatar
-    // count notification
-
-    const fonts = loadFonts([Ionicons.font]);
-    const images = loadImages([
+    // await Font.loadAsync(Ionicons.font);
+    const fonts = await loadFonts([Ionicons.font]);
+    const assets = loadAssets([
       require('./dami.png'),
       'https://reactnative.dev/img/oss_logo.png',
     ]);
-    await Promise.all([...fonts, ...images]);
     console.log(fonts);
-    console.log('images = ', images);
 
     // await new Promise((resolve) => setTimeout(resolve, 1000));
   };
-
   if (!ready) {
     return (
       <AppLoading
@@ -53,9 +33,6 @@ export default function App() {
       />
     );
   }
-  // if (!assets || !loaded) {
-  //   return <AppLoading />;
-  // }
   return <Text>We are done loading</Text>;
   // <StatusBar style='auto' />
 }

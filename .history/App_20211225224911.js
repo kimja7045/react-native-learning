@@ -4,7 +4,7 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { Image, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Asset, useAssets } from 'expo-asset';
+import { Asset } from 'expo-asset';
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
@@ -19,19 +19,11 @@ const loadImages = (images) =>
 
 export default function App() {
   const [ready, setReady] = useState(false);
-  // const [assets] = useAssets([
-  //   require('./dami.png'),
-  //   'https://reactnative.dev/img/oss_logo.png',
-  // ]);
-  // const [loaded] = Font.useFonts(Ionicons.font);
 
   const onFinish = () => setReady(true);
 
   const startLoading = async () => {
-    // init db
-    // get user avatar
-    // count notification
-
+    // await Font.loadAsync(Ionicons.font);
     const fonts = loadFonts([Ionicons.font]);
     const images = loadImages([
       require('./dami.png'),
@@ -43,7 +35,6 @@ export default function App() {
 
     // await new Promise((resolve) => setTimeout(resolve, 1000));
   };
-
   if (!ready) {
     return (
       <AppLoading
@@ -53,9 +44,6 @@ export default function App() {
       />
     );
   }
-  // if (!assets || !loaded) {
-  //   return <AppLoading />;
-  // }
   return <Text>We are done loading</Text>;
   // <StatusBar style='auto' />
 }

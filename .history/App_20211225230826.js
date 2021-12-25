@@ -19,19 +19,15 @@ const loadImages = (images) =>
 
 export default function App() {
   const [ready, setReady] = useState(false);
-  // const [assets] = useAssets([
-  //   require('./dami.png'),
-  //   'https://reactnative.dev/img/oss_logo.png',
-  // ]);
-  // const [loaded] = Font.useFonts(Ionicons.font);
+  const [assets] = useAssets([
+    require('./dami.png'),
+    'https://reactnative.dev/img/oss_logo.png',
+  ]);
 
   const onFinish = () => setReady(true);
 
   const startLoading = async () => {
-    // init db
-    // get user avatar
-    // count notification
-
+    // await Font.loadAsync(Ionicons.font);
     const fonts = loadFonts([Ionicons.font]);
     const images = loadImages([
       require('./dami.png'),
@@ -43,19 +39,18 @@ export default function App() {
 
     // await new Promise((resolve) => setTimeout(resolve, 1000));
   };
-
-  if (!ready) {
-    return (
-      <AppLoading
-        startAsync={startLoading}
-        onFinish={onFinish}
-        onError={console.error}
-      />
-    );
-  }
-  // if (!assets || !loaded) {
-  //   return <AppLoading />;
+  // if (!ready) {
+  // return (
+  // <AppLoading
+  //   startAsync={startLoading}
+  //   onFinish={onFinish}
+  //   onError={console.error}
+  // />
+  // );
   // }
+  if (!assets) {
+    return <AppLoading />;
+  }
   return <Text>We are done loading</Text>;
   // <StatusBar style='auto' />
 }
