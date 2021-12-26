@@ -14,6 +14,8 @@ import {
 import Tabs from './navigation/Tabs';
 import Stack from './navigation/Stack';
 import Root from './navigation/Root';
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from './Styled';
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
@@ -52,7 +54,7 @@ export default function App() {
 
     // await new Promise((resolve) => setTimeout(resolve, 1000));
   };
-  // const isDark = useColorScheme() === 'dark'; // 'light' or 'dark'
+  const isDark = useColorScheme() === 'light'; // 'light' or 'dark'
 
   if (!ready) {
     return (
@@ -68,11 +70,13 @@ export default function App() {
   // }
   return (
     // <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
-    <NavigationContainer>
-      <Root />
-      {/* <Tabs /> */}
-      {/* <Stack /> */}
-    </NavigationContainer>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <NavigationContainer>
+        <Root />
+        {/* <Tabs /> */}
+        {/* <Stack /> */}
+      </NavigationContainer>
+    </ThemeProvider>
   );
   // <StatusBar style='auto' />
 }

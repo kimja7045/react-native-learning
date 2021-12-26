@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Movies from '../screens/Movies';
-import Search from '../screens/Search';
+import Movies from '../screens/Movies.';
+import Search from '../screens/Search.';
 import Tv from '../screens/Tv';
 import { useColorScheme } from 'react-native';
 import { BLACK_COLOR, YELLOW_COLOR } from '../colors';
@@ -11,7 +11,7 @@ import Stack from './Stack';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
-  const isDark = useColorScheme() === 'dark'; // 'light' or 'dark'
+  const isDark = useColorScheme() === 'light'; // 'light' or 'dark'
 
   return (
     <Tab.Navigator
