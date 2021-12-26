@@ -6,6 +6,7 @@ import Tv from '../screens/Tv';
 import { useColorScheme } from 'react-native';
 import { BLACK_COLOR, YELLOW_COLOR } from '../colors';
 import { Ionicons } from '@expo/vector-icons';
+import Stack from './Stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,6 +40,7 @@ const Tabs = () => {
         name='Movies'
         component={Movies}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? 'film' : 'film-outline'}
