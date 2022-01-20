@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { YELLOW_COLOR } from '../colors';
+import MovieDetail from '../screens/MovieDetail';
 
 const ScreenOne = ({ navigation: { navigate } }) => (
   <View>
@@ -50,6 +51,11 @@ const Stack = () => (
     <NativeStack.Screen
       name='Three'
       component={ScreenThree}
+      options={{ presentation: 'modal' }}
+    ></NativeStack.Screen>
+    <NativeStack.Screen
+      name='MovieDetail'
+      component={MovieDetail}
       options={{ presentation: 'modal' }}
     ></NativeStack.Screen>
   </NativeStack.Navigator>

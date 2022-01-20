@@ -16,6 +16,9 @@ import Stack from './navigation/Stack';
 import Root from './navigation/Root';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from './Styled';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
@@ -71,11 +74,13 @@ export default function App() {
   return (
     // <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <NavigationContainer>
-        <Root />
-        {/* <Tabs /> */}
-        {/* <Stack /> */}
-      </NavigationContainer>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <Root />
+          {/* <Tabs /> */}
+          {/* <Stack /> */}
+        </NavigationContainer>
+      </QueryClientProvider>
     </ThemeProvider>
   );
   // <StatusBar style='auto' />
