@@ -7,6 +7,8 @@ const trending = () =>
   );
 
 const defaultList = () =>
-  fetch(`${BASE_URL}/movie/550?api_key=${API_KEY}`).then((res) => res.json());
+  fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`).then((res) =>
+    res.json()
+  );
 
 export const moviesApi = { trending, defaultList };

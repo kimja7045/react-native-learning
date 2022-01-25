@@ -59,6 +59,7 @@ export default function App() {
   };
   const isDark = useColorScheme() === 'light'; // 'light' or 'dark'
 
+  console.log(ready);
   if (!ready) {
     return (
       <AppLoading
